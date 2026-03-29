@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>STOMP Test</title>
+</head>
+<body>
+
+<h3>Typing test</h3>
+<input id="i" autofocus />
+<pre id="log"></pre>
+
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+
+<script>
+    const log = document.getElementById("log");
+
+    const socket = new SockJS("http://localhost:8081/typing-ws");
+    const stomp = Stomp.over(socket);
+
+    stomp.connect({}, () => {
+      log.textContent += "CONNECTED\n";
+
+      stomp.subscribe("/topic/pong", msg => {
+      log.textContent += msg.body + "\n";
+    });
+  });
+
+  document.getElementById("i").addEventListener("keydown", e => {
+    stomp.send("/app/ping", {}, e.key);
+  });
+</script>
+
+</body>
+</html>

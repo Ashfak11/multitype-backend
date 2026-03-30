@@ -62,7 +62,7 @@ public class SecurityConfig {
                 "http://localhost:5173",
                 "http://127.0.0.1:3000",
                 "http://127.0.0.1:5173",
-                "https://multitype-qkloqs6hf-ashfak11s-projects.vercel.app",
+                "multitype-3lq0vn9eg-ashfak11s-projects.vercel.app",
                 "https://multitype.vercel.app"
         ));
 
